@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tchac Ultimate | Club d'Ultimate Frisbee Pornichet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            navy: '#00158a',
+                            pink: '#f9b6d8',
+                            light: '#fdf2f8',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                        'slide-up': 'slideUp 0.6s ease-out forwards',
+                        'wave': 'wave 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        wave: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-5px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .nav-link.active {
+            color: #00158a;
+            font-weight: 800;
+        }
+        .nav-link.active::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 3px;
+            background: #f9b6d8;
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+        }
+        .wave-bg {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3%3Cpath fill='%23f9b6d8' fill-opacity='0.1' d='M0,192L48,197.3C96,203,192,213,288,192C384,171,480,117,576,112C672,107,768,149,864,165.3C960,181,1056,171,1152,144C1248,117,1344,75,1392,53.3L1440,32L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: bottom;
+            background-size: contain;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-white text-brand-navy font-sans selection:bg-brand-pink selection:text-brand-navy">
+
+    <!-- HEADER -->
+    <header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 glass border-b border-brand-navy/10">
+        <nav class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#accueil" class="flex items-center gap-3 group" aria-label="Retour à l'accueil">
+                <img src="asset/LogoTchac.png" alt="Tchac Logo" class="h-12 w-auto group-hover:animate-wave" referrerPolicy="no-referrer">
+                <div class="flex flex-col leading-none">
+                    <span class="text-xs font-bold tracking-[0.3em] text-brand-pink uppercase">Forty-Four</span>
+                    <span class="text-xl font-black tracking-tighter text-brand-navy">TCHAC</span>
+                </div>
+            </a>
+
+            <!-- Menu Desktop -->
+            <div class="hidden lg:flex items-center gap-8">
+                <ul class="flex items-center gap-6 text-sm font-bold text-brand-navy/70 uppercase tracking-wider">
+                    <li><a href="#accueil" class="nav-link relative hover:text-brand-navy transition-colors" data-section="accueil">Accueil</a></li>
+                    <li><a href="#ultimate" class="nav-link relative hover:text-brand-navy transition-colors" data-section="ultimate">L'Ultimate</a></li>
+                    <li><a href="#club" class="nav-link relative hover:text-brand-navy transition-colors" data-section="club">Le Club</a></li>
+                    <li><a href="#calendrier" class="nav-link relative hover:text-brand-navy transition-colors" data-section="calendrier">Calendrier</a></li>
+                    <li><a href="#entrainements" class="nav-link relative hover:text-brand-navy transition-colors" data-section="entrainements">Horaires</a></li>
+                    <li><a href="#contact" class="nav-link relative hover:text-brand-navy transition-colors" data-section="contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="lg:hidden text-brand-navy p-2" id="mobileMenuBtn" aria-label="Ouvrir le menu">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobileMenu" class="fixed inset-0 bg-brand-navy z-[60] flex flex-col items-center justify-center transition-all duration-500 translate-x-full">
+            <button id="closeMobileMenu" class="absolute top-6 right-6 text-white text-3xl p-4">
+                <i class="fas fa-times"></i>
+            </button>
+            <ul class="flex flex-col items-center gap-8 text-2xl font-black text-white uppercase tracking-widest">
+                <li><a href="#accueil" class="mobile-link hover:text-brand-pink transition-colors">Accueil</a></li>
+                <li><a href="#ultimate" class="mobile-link hover:text-brand-pink transition-colors">L'Ultimate</a></li>
+                <li><a href="#club" class="mobile-link hover:text-brand-pink transition-colors">Le Club</a></li>
+                <li><a href="#calendrier" class="mobile-link hover:text-brand-pink transition-colors">Calendrier</a></li>
+                <li><a href="#entrainements" class="mobile-link hover:text-brand-pink transition-colors">Horaires</a></li>
+                <li><a href="#contact" class="mobile-link hover:text-brand-pink transition-colors">Contact</a></li>
+            </ul>
+            <div class="mt-16 flex gap-6">
+                <a href="https://www.facebook.com/Tchac44/" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-white"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/tchac44/" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-white"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1) BANNIÈRE HERO -->
+        <section id="accueil" class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-brand-navy">
+            <div class="absolute inset-0 z-0">
+                <img src="asset/EUCF.jpg" alt="Tchac Ultimate en action" class="w-full h-full object-cover opacity-40 grayscale" referrerPolicy="no-referrer">
+                <div class="absolute inset-0 bg-gradient-to-b from-brand-navy/20 via-brand-navy/60 to-brand-navy"></div>
+            </div>
+            
+            <div class="relative z-10 max-w-7xl mx-auto px-6 w-full flex flex-col items-center text-center">
+                <div class="animate-slide-up">
+                    <!-- Club Logo in Hero -->
+                    <div class="mb-12 inline-flex flex-col items-center">
+                        <span class="text-brand-pink text-2xl md:text-3xl font-bold tracking-[0.5em] uppercase mb-2">Forty-Four</span>
+                        <h1 class="text-8xl md:text-[12rem] font-black text-white leading-none tracking-tighter mb-4">TCHAC</h1>
+                        <span class="text-brand-pink text-3xl md:text-4xl font-bold tracking-[0.8em] uppercase">ULTIMATE</span>
+                        <div class="mt-8 flex gap-2">
+                            <div class="w-12 h-1.5 bg-white rounded-full"></div>
+                            <div class="w-12 h-1.5 bg-brand-pink rounded-full"></div>
+                            <div class="w-12 h-1.5 bg-white rounded-full"></div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-xl md:text-2xl text-white/80 mb-10 max-w-2xl mx-auto font-medium leading-relaxed">
+                        Pornichet, Corspet, Orvault.
+                    
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                        <a href="#club" class="px-10 py-5 bg-brand-pink text-brand-navy rounded-full font-black text-lg transition-all hover:scale-105 shadow-2xl shadow-brand-pink/20">
+                            DÉCOUVRIR LE CLUB
+                        </a>
+                        <a href="#ultimate" class="px-10 py-5 bg-brand-pink text-brand-navy rounded-full font-black text-lg transition-all hover:scale-105 shadow-2xl shadow-brand-pink/20">
+                            LES RÈGLES
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wave Decoration -->
+            <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+                <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="relative block w-full h-24 fill-white">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C58.47,113.1,121.36,119.32,182.36,108.07,243.36,96.82,283.36,70.82,321.39,56.44Z"></path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- SECTION 1: L'ULTIMATE C'EST QUOI ET LES RÈGLES -->
+        <section id="ultimate" class="py-32 bg-white relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="max-w-4xl mx-auto text-center">
+                    <div class="inline-block px-4 py-1 bg-brand-pink/20 text-brand-navy rounded-full text-xs font-black uppercase tracking-widest mb-6">
+                        Initiation
+                    </div>
+                    <h2 class="text-5xl md:text-6xl font-black mb-8 tracking-tighter">L'Ultimate, c'est quoi ?</h2>
+                    <p class="text-xl text-slate-600 leading-relaxed mb-16">
+                        L’ultimate sport, également nommé Flying Disc est un sport collectif opposant 2 équipes de 5 ou 7 joueurs, qui se joue avec un disque volant (frisbee).<br><br>
+                        Aujourd’hui pratiqué par plus de 2900 licenciés en France et par les collégiens et lycéens dans les programmes d’éducation physique et sportive, focus sur un sport en pleine expansion.
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+                        <div class="p-8 bg-brand-light rounded-[32px] border border-brand-pink/20 flex flex-col items-center text-center">
+                            <div class="w-16 h-16 bg-brand-navy text-white rounded-2xl flex items-center justify-center mb-6">
+                                <i class="fas fa-handshake text-2xl"></i>
+                            </div>
+                            <h4 class="font-black text-xl mb-3">L'Esprit du Jeu</h4>
+                            <p class="text-slate-600">L'auto-arbitrage est la règle d'or. Chaque joueur est responsable du respect des règles et du fair-play.</p>
+                        </div>
+                        <div class="p-8 bg-brand-light rounded-[32px] border border-brand-pink/20 flex flex-col items-center text-center">
+                            <div class="w-16 h-16 bg-brand-navy text-white rounded-2xl flex items-center justify-center mb-6">
+                                <i class="fas fa-ban text-2xl"></i>
+                            </div>
+                            <h4 class="font-black text-xl mb-3">Zéro Contact</h4>
+                            <p class="text-slate-600">Tout contact physique est interdit. C'est un sport de placement, d'agilité et de lecture de trajectoire.</p>
+                        </div>
+                        <div class="p-8 bg-brand-light rounded-[32px] border border-brand-pink/20 flex flex-col items-center text-center">
+                            <div class="w-16 h-16 bg-brand-navy text-white rounded-2xl flex items-center justify-center mb-6">
+                                <i class="fas fa-walking text-2xl"></i>
+                            </div>
+                            <h4 class="font-black text-xl mb-3">Pas de marche</h4>
+                            <p class="text-slate-600">Le porteur du disque ne peut pas courir. Il doit établir un pied de pivot pour lancer le disque.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: 3 PHOTOS -->
+        <section class="py-12 bg-brand-light">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="overflow-hidden rounded-[32px] shadow-lg group">
+                        <img src="asset/Tchac1.JPG" alt="Tchac Match" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer">
+                    </div>
+                    <div class="overflow-hidden rounded-[32px] shadow-lg group">
+                        <img src="asset/Tchac2.JPG" alt="Tchac Action" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer">
+                    </div>
+                    <div class="overflow-hidden rounded-[32px] shadow-lg group">
+                        <img src="asset/Tchac3.JPG" alt="Tchac Beach" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: LE CLUB & PALMARÈS -->
+        <section id="club" class="py-32 bg-white wave-bg">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center max-w-3xl mx-auto mb-20">
+                    <h2 class="text-5xl md:text-6xl font-black mb-8 tracking-tighter">Le Club</h2>
+                    <p class="text-xl text-slate-600 leading-relaxed">
+                        Tchac Ultimate forme des joueuses et des joueurs à tous les niveaux, des premiers lancers aux compétitions. Séances organisées, apprentissages techniques et intensités adaptées : l’idée est simple, progresser durablement. Le club s’appuie sur des équipes féminines, mixtes, junior et open pour offrir à chacun un collectif, un rythme et des objectifs clairs, avec trois lieux d’entraînement : Pornichet, Orvault et Corsept.
+                    </p>
+                </div>
+
+                <div class="bg-brand-navy rounded-[48px] p-12 md:p-20 text-white relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-12 opacity-10">
+                        <i class="fas fa-trophy text-[15rem]"></i>
+                    </div>
+                    
+                    <div class="relative z-10">
+                        <h3 class="text-3xl md:text-4xl font-black mb-12 flex items-center gap-4">
+                            <span class="w-12 h-1 bg-brand-pink"></span>
+                            Palmarès Significatif
+                        </h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                            <div class="flex flex-col">
+                                <span class="text-brand-pink text-5xl font-black mb-4">2026</span>
+                                <h4 class="text-2xl font-bold mb-2">Champion de France</h4>
+                                <p class="text-white/60">Division Open N1 - Indoor, 11ème titre pour le club.</p>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="text-brand-pink text-5xl font-black mb-4">2026</span>
+                                <h4 class="text-2xl font-bold mb-2">Championnat de France</h4>
+                                <p class="text-white/60">Médaille de Bronze pour les juniors U13.</p>
+                            </div>
+                            <div class="flex flex-col">
+                                <span class="text-brand-pink text-5xl font-black mb-4">2025</span>
+                                <h4 class="text-2xl font-bold mb-2">Champion de France</h4>
+                                <p class="text-white/60">Division Open N1 Indoor et Outdoor.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: CALENDRIER -->
+        <section id="calendrier" class="py-32 bg-brand-navy text-white">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+                    <div>
+                        <h2 class="text-5xl md:text-6xl font-black tracking-tighter mb-4">Prochaines Dates</h2>
+                        <p class="text-xl text-white/60">Ne manquez pas les moments forts de la saison Tchac Ultimate.</p>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="w-24 h-1 bg-brand-pink"></div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Date 1 -->
+                    <div class="bg-white/5 border border-white/10 p-8 rounded-[32px] hover:bg-white/10 transition-all group">
+                        <div class="text-brand-pink text-4xl font-black mb-2">13-14</div>
+                        <div class="text-xl font-bold uppercase tracking-widest mb-6">Juin 2026</div>
+                        <h4 class="text-lg font-black mb-2">Championnat de France Outdoor</h4>
+                        <p class="text-white/50 text-sm">Open et Féminin à Orvault.</p>
+                    </div>
+                    <!-- Date 2 -->
+                    <div class="bg-white/5 border border-white/10 p-8 rounded-[32px] hover:bg-white/10 transition-all group">
+                        <div class="text-brand-pink text-4xl font-black mb-2">20-21</div>
+                        <div class="text-xl font-bold uppercase tracking-widest mb-6">Juin 2026</div>
+                        <h4 class="text-lg font-black mb-2">Championnat de France Outdoor Junior</h4>
+                        <p class="text-white/50 text-sm">U13, U15, U17 à Blois</p>
+                    </div>
+                    <!-- Date 3 -->
+                    <div class="bg-white/5 border border-white/10 p-8 rounded-[32px] hover:bg-white/10 transition-all group">
+                        <div class="text-brand-pink text-4xl font-black mb-2">12-22</div>
+                        <div class="text-xl font-bold uppercase tracking-widest mb-6">Aout 2026</div>
+                        <h4 class="text-lg font-black mb-2">World Ultimate Club Championships(WUCC)</h4>
+                        <p class="text-white/50 text-sm">Open outdoor à Limerick Ireland</p>
+                    </div>
+                    <!-- Date 4 -->
+                    <div class="bg-white/5 border border-white/10 p-8 rounded-[32px] hover:bg-white/10 transition-all group">
+                        <div class="text-brand-pink text-4xl font-black mb-2">2-4</div>
+                        <div class="text-xl font-bold uppercase tracking-widest mb-6">Octobre 2026</div>
+                        <h4 class="text-lg font-black mb-2">European Ultimate Club Finals(EUCF)</h4>
+                        <p class="text-white/50 text-sm">Open Outdoor</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: HORAIRES D'ENTRAINEMENT -->
+        <section id="entrainements" class="py-32 bg-brand-light">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-20">
+                    <h2 class="text-5xl font-black tracking-tighter mb-4">Nos Entraînements</h2>
+                    <p class="text-slate-500 font-medium">Retrouvez-nous dans nos trois villes partenaires.</p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Pornichet -->
+                    <div class="bg-white p-10 rounded-[40px] shadow-xl border-b-8 border-brand-pink hover:-translate-y-2 transition-all">
+                        <div class="w-20 h-20 bg-brand-light rounded-2xl flex items-center justify-center mb-8 overflow-hidden border border-brand-pink/20">
+                            <img src="https://ville-pornichet.fr/wp-content/uploads/2025/05/98b1df9f558f9e6c04ee9875ad46e46108541851-1024x465.png" alt="Logo Pornichet" class="max-h-[80%] max-w-[80%] object-contain">
+                        </div>
+                        <h3 class="text-2xl font-black mb-4 uppercase tracking-tight">Pornichet</h3>
+                        <div class="space-y-4 text-slate-600">
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-clock mt-1 text-brand-pink"></i>
+                                <span>Lundi : 19h30 - 20h30<br><small class="text-slate-400">Loisirs - Complexe Sportif Prieux</small></span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-clock mt-1 text-brand-pink"></i>
+                                <span>Mercredi : 18h30 - 20h30<br><small class="text-slate-400">Junior U13, U17, U20, Open et Mixte - Complexe Sportif Prieux</small></span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-clock mt-1 text-brand-pink"></i>
+                                <span>Samedi : 11h15 - 13h15<br><small class="text-slate-400">Junior U13, U17 - Complexe Sportif Prieux</small></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Corsept -->
+                    <div class="bg-white p-10 rounded-[40px] shadow-xl border-b-8 border-brand-navy hover:-translate-y-2 transition-all">
+                        <div class="w-20 h-20 bg-brand-light rounded-2xl flex items-center justify-center mb-8 overflow-hidden border border-brand-navy/20">
+                            <img src="https://photos.infolocale.fr/infolocale/organisme/212/212960/logo/212960.jpg" alt="Logo Corsept" class="max-h-[80%] max-w-[80%] object-contain">
+                        </div>
+                        <h3 class="text-2xl font-black mb-4 uppercase tracking-tight">Corsept</h3>
+                        <div class="space-y-4 text-slate-600">
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-clock mt-1 text-brand-navy"></i>
+                                <span>Samedi : 10h00 - 12h00<br><small class="text-slate-400">Ouvert à tous à partir de 11 ans - Complexe Joseph Clavier</small></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Orvault -->
+                    <div class="bg-white p-10 rounded-[40px] shadow-xl border-b-8 border-brand-pink hover:-translate-y-2 transition-all">
+                        <div class="w-20 h-20 bg-brand-light rounded-2xl flex items-center justify-center mb-8 overflow-hidden border border-brand-pink/20">
+                            <img src="https://graine-pdl.org/wp-content/uploads/2024/11/logo-ville-orvault.jpg" alt="Logo Orvault" class="max-h-[80%] max-w-[80%] object-contain">
+                        </div>
+                        <h3 class="text-2xl font-black mb-4 uppercase tracking-tight">Orvault</h3>
+                        <div class="space-y-4 text-slate-600">
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-clock mt-1 text-brand-pink"></i>
+                                <span>Lundi : 20h00 - 22h15<br><small class="text-slate-400">TCHAT - Stade de la Cholière</small></span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-clock mt-1 text-brand-pink"></i>
+                                <span>Jeudi : 18h30 - 20h00<br><small class="text-slate-400">Junior U15, U17, U20 - Stade de la Cholière</small></span>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-clock mt-1 text-brand-pink"></i>
+                                <span>Jeudi : 20h00 - 22h00<br><small class="text-slate-400">Ouvert à tous - Stade de la Cholière</small></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: ILS NOUS FONT CONFIANCE -->
+        <section id="partenaires" class="py-32 bg-white overflow-hidden">
+            <div class="max-w-7xl mx-auto px-6 mb-16">
+                <div class="flex items-center gap-6">
+                    <h2 class="text-4xl font-black tracking-tighter whitespace-nowrap">Ils nous font confiance</h2>
+                    <div class="h-px bg-slate-200 w-full"></div>
+                </div>
+            </div>
+
+            <div class="relative group">
+                <div id="partnersCarousel" class="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-12 px-6 pb-12">
+                    <!-- Partner 1: Pornichet -->
+                    <div class="flex-shrink-0 w-64 h-40 bg-brand-light rounded-[32px] flex items-center justify-center p-10 snap-center border border-slate-100 grayscale hover:grayscale-0 hover:border-brand-pink/30 transition-all">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQ0ESdmm2mtG1M3GEz5h8HSSkMBmudV_yLMg&s" alt="Intermarché Pornichet" class="max-h-full max-w-full object-contain">
+                    </div>
+                    <!-- Partner 2: Loire-Atlantique -->
+                    <div class="flex-shrink-0 w-64 h-40 bg-brand-light rounded-[32px] flex items-center justify-center p-10 snap-center border border-slate-100 grayscale hover:grayscale-0 hover:border-brand-pink/30 transition-all">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbcXSyc87zEWyByC3Qv6A99QO3W9IdWHhP8w&s" alt="Maison Arteco" class="max-h-full max-w-full object-contain">
+                    </div>
+                    <!-- Partner 3: Eurodisc -->
+                    <div class="flex-shrink-0 w-64 h-40 bg-brand-light rounded-[32px] flex items-center justify-center p-10 snap-center border border-slate-100 grayscale hover:grayscale-0 hover:border-brand-pink/30 transition-all">
+                        <img src="https://www.eurodisc.biz/media/image/6e/67/6a/eurodisc-logo-black.png" alt="Eurodisc" class="max-h-full max-w-full object-contain">
+                    </div>
+                    <!-- Partner 4: Lookfly -->
+                    <div class="flex-shrink-0 w-64 h-40 bg-brand-light rounded-[32px] flex items-center justify-center p-10 snap-center border border-slate-100 grayscale hover:grayscale-0 hover:border-brand-pink/30 transition-all">
+                        <img src="https://lookfly.com/wp-content/uploads/2018/01/Lookfly-Logo-Black-Horizontal.png" alt="Lookfly" class="max-h-full max-w-full object-contain">
+                    </div>
+                    <!-- Partner 5: Pays de la Loire -->
+                    <div class="flex-shrink-0 w-64 h-40 bg-brand-light rounded-[32px] flex items-center justify-center p-10 snap-center border border-slate-100 grayscale hover:grayscale-0 hover:border-brand-pink/30 transition-all">
+                        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/c/c5/Logo_Pays_de_la_Loire_2018.svg/1200px-Logo_Pays_de_la_Loire_2018.svg.png" alt="Région Pays de la Loire" class="max-h-full max-w-full object-contain">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 6) CONTACTEZ-NOUS, NOTRE BASE ET NOS LIEUX -->
+    <footer id="contact" class="bg-brand-navy text-white pt-32 pb-16 relative overflow-hidden">
+        <!-- Seagull Background Pattern -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-[0.03] pointer-events-none">
+            <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <pattern id="seagullPattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                    <path d="M20,50 Q35,40 50,50 Q65,40 80,50" fill="none" stroke="white" stroke-width="2"/>
+                </pattern>
+                <rect width="100%" height="100%" fill="url(#seagullPattern)" />
+            </svg>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-20 mb-24">
+                <!-- Contact -->
+                <div>
+                    <h4 class="text-3xl font-black mb-10 text-brand-pink">Contactez-nous</h4>
+                    <div class="space-y-8">
+                        <a href="mailto:president@tchac-ultimate.net" class="flex items-center gap-6 group">
+                            <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-brand-pink group-hover:bg-brand-pink group-hover:text-brand-navy transition-all">
+                                <i class="fas fa-envelope text-xl"></i>
+                            </div>
+                            <span class="text-xl font-bold">president@tchac-ultimate.net</span>
+                        </a>
+                        <div class="flex gap-6 pt-4">
+                            <a href="https://www.facebook.com/Tchac44/" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-brand-pink hover:text-brand-navy transition-all">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://www.instagram.com/tchac44/" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-brand-pink hover:text-brand-navy transition-all">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nos Villes -->
+                <div>
+                    <h4 class="text-3xl font-black mb-10 text-brand-pink">Nos Villes</h4>
+                    <div class="rounded-[32px] overflow-hidden border-2 border-white/10 group aspect-video bg-white/5">
+                        <img src="asset/Map.png" alt="Nos Villes" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                </div>
+
+                <!-- Nos Lieux -->
+                <div>
+                    <h4 class="text-3xl font-black mb-10 text-brand-pink">Nos Lieux</h4>
+                    <ul class="space-y-8">
+                        <li class="flex gap-5">
+                            <div class="w-10 h-10 bg-brand-pink/20 rounded-xl flex items-center justify-center flex-shrink-0 text-brand-pink">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Complexe+Sportif+Prieux+Pornichet" target="_blank" rel="noopener noreferrer" class="group/link">
+                                <span class="block font-black text-lg group-hover/link:text-brand-pink transition-colors">Complexe Sportif Prieux</span>
+                                <span class="text-white/60 group-hover/link:text-white transition-colors">Avenue de Prieux, Pornichet</span>
+                            </a>
+                        </li>
+                        <li class="flex gap-5">
+                            <div class="w-10 h-10 bg-brand-pink/20 rounded-xl flex items-center justify-center flex-shrink-0 text-brand-pink">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <a href="https://www.google.com/maps/search/?api=1&query=Complexe+Sportif+Roger+Picaud+Orvault" target="_blank" rel="noopener noreferrer" class="group/link">
+                                <span class="block font-black text-lg group-hover/link:text-brand-pink transition-colors">Complexe Sportif Roger Picaud</span>
+                                <span class="text-white/60 group-hover/link:text-white transition-colors">Avenue de la Cholière, Orvault</span>
+                            </a>
+                        </li>
+                        <li class="flex gap-5">
+                            <div class="w-10 h-10 bg-brand-pink/20 rounded-xl flex items-center justify-center flex-shrink-0 text-brand-pink">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <a href="https://www.google.com/maps/search/?api=1&query=12+Rue+de+la+Mairie+44560+Corsept" target="_blank" rel="noopener noreferrer" class="group/link">
+                                <span class="block font-black text-lg group-hover/link:text-brand-pink transition-colors">Complexe Joseph Clavier</span>
+                                <span class="text-white/60 group-hover/link:text-white transition-colors">12 Rue de la Mairie, Corsept</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 md:p-12 rounded-[32px] flex flex-col md:flex-row justify-between items-center gap-8 text-brand-navy">
+                <div class="flex items-center gap-4">
+                    <img src="asset/LogoTchac2.png" alt="Tchac Logo" class="h-10 w-auto" referrerPolicy="no-referrer">
+                    <span class="font-black tracking-widest uppercase"></span>
+                </div>
+                <p class="text-brand-navy/60 text-sm">© 2024 Tchac Ultimate. Design inspiré par l'Esprit du Jeu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        // --- MOBILE MENU ---
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeMobileMenu = document.getElementById('closeMobileMenu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        const header = document.getElementById('header');
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.remove('translate-x-full');
+        });
+
+        closeMobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.add('translate-x-full');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('translate-x-full');
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('shadow-xl');
+                header.classList.remove('h-20');
+                header.classList.add('h-16');
+            } else {
+                header.classList.remove('shadow-xl');
+                header.classList.add('h-20');
+                header.classList.remove('h-16');
+            }
+
+            // Scrollspy
+            let current = "";
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-section') === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Carousel Autoplay
+        const carousel = document.getElementById('partnersCarousel');
+        let autoplayInterval;
+
+        function startAutoplay() {
+            autoplayInterval = setInterval(() => {
+                if (carousel.scrollLeft + carousel.offsetWidth >= carousel.scrollWidth) {
+                    carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    carousel.scrollBy({ left: 300, behavior: 'smooth' });
+                }
+            }, 3000);
+        }
+
+        carousel.addEventListener('mouseenter', () => clearInterval(autoplayInterval));
+        carousel.addEventListener('mouseleave', startAutoplay);
+        startAutoplay();
+    </script>
+</body>
+</html>
