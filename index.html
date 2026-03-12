@@ -6,7 +6,7 @@
     <title>Tchac Ultimate | Club d'Ultimate Frisbee Pornichet</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Bebas+Neue&family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -14,6 +14,7 @@
                     fontFamily: {
                         sans: ['Plus Jakarta Sans', 'sans-serif'],
                         bebas: ['Bebas Neue', 'cursive'],
+                        open: ['Open Sans', 'sans-serif'],
                     },
                     colors: {
                         brand: {
@@ -189,7 +190,7 @@
         <section id="ultimate" class="py-32 bg-white relative overflow-hidden">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="max-w-4xl mx-auto text-center">
-                    <h2 class="text-5xl md:text-6xl font-black mb-8 tracking-tighter">L'Ultimate, c'est quoi ?</h2>
+                    <h2 class="text-5xl md:text-6xl font-open font-black mb-8 tracking-tighter">L'Ultimate, c'est quoi ?</h2>
                     <p class="text-xl text-slate-600 leading-relaxed mb-16">
                         L’ultimate sport, également nommé Flying Disc est un sport collectif opposant 2 équipes de 5 ou 7 joueurs, qui se joue avec un disque volant (frisbee).<br><br>
                         Aujourd’hui pratiqué par plus de 6000 licenciés en France et par les collégiens et lycéens dans les programmes d’éducation physique et sportive, focus sur un sport en pleine expansion.
@@ -254,7 +255,7 @@
         <section id="club" class="py-32 bg-white wave-bg">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="text-center max-w-3xl mx-auto mb-20">
-                    <h2 class="text-5xl md:text-6xl font-black mb-8 tracking-tighter">Le Club</h2>
+                    <h2 class="text-5xl md:text-6xl font-open font-black mb-8 tracking-tighter">Le Club</h2>
                     <p class="text-xl text-slate-600 leading-relaxed">
                         Tchac Ultimate forme des joueuses et des joueurs à tous les niveaux, des premiers lancers aux compétitions. Séances organisées, apprentissages techniques et intensités adaptées : l’idée est simple, progresser durablement. Le club s’appuie sur des équipes féminines, mixtes, junior et open pour offrir à chacun un collectif, un rythme et des objectifs clairs, avec trois lieux d’entraînement : Pornichet, Orvault et Corsept.
                     </p>
@@ -298,7 +299,7 @@
             <div class="max-w-7xl mx-auto px-6">
                 <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
                     <div>
-                        <h2 class="text-5xl md:text-6xl font-black tracking-tighter mb-4">Prochaines Dates</h2>
+                        <h2 class="text-5xl md:text-6xl font-open font-black tracking-tighter mb-4">Prochaines Dates</h2>
                         <p class="text-xl text-white/60">Ne manquez pas les moments forts de la saison Tchac Ultimate.</p>
                     </div>
                     <div class="hidden md:block">
@@ -353,7 +354,7 @@
         <section id="entrainements" class="py-32 bg-brand-light">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="text-center mb-20">
-                    <h2 class="text-5xl font-black tracking-tighter mb-4">Nos Entraînements</h2>
+                    <h2 class="text-5xl font-open font-black tracking-tighter mb-4">Nos Entraînements</h2>
                     <p class="text-slate-500 font-medium">Retrouvez-nous dans nos trois villes partenaires.</p>
                 </div>
                 
@@ -433,32 +434,32 @@
         <section id="partenaires" class="py-32 bg-white overflow-hidden">
             <div class="max-w-7xl mx-auto px-6 mb-16">
                 <div class="flex items-center gap-6">
-                    <h2 class="text-4xl font-black tracking-tighter whitespace-nowrap">Ils nous font confiance</h2>
+                    <h2 class="text-4xl font-open font-black tracking-tighter whitespace-nowrap">Ils nous font confiance</h2>
                     <div class="h-px bg-slate-200 w-full"></div>
                 </div>
             </div>
 
             <div class="relative group">
                 <div id="partnersCarousel" class="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar gap-12 px-6 pb-12">
-                    <!-- Partner 1: Pornichet -->
+                    <!-- Partner 1: Intermarché -->
                     <div class="flex-shrink-0 w-72 h-44 bg-brand-light rounded-[32px] flex items-center justify-center p-10 snap-center border border-slate-100 grayscale hover:grayscale-0 hover:border-brand-pink/30 transition-all">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQ0ESdmm2mtG1M3GEz5h8HSSkMBmudV_yLMg&s" alt="Intermarché Pornichet" class="max-h-full max-w-full object-contain">
                     </div>
-                    <!-- Partner 2: Loire-Atlantique -->
+                    <!-- Partner 2: Arteco -->
                     <div class="flex-shrink-0 w-72 h-44 bg-brand-light rounded-[32px] flex items-center justify-center p-10 snap-center border border-slate-100 grayscale hover:grayscale-0 hover:border-brand-pink/30 transition-all">
                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbcXSyc87zEWyByC3Qv6A99QO3W9IdWHhP8w&s" alt="Maison Arteco" class="max-h-full max-w-full object-contain">
                     </div>
-                    <!-- Partner 3: Eurodisc -->
+                    <!-- Partner 3: Sponsor -->
                     <div class="flex-shrink-0 w-72 h-44 bg-brand-light rounded-[32px] flex items-center justify-center p-10 snap-center border border-slate-100 grayscale hover:grayscale-0 hover:border-brand-pink/30 transition-all">
-                        <img src="https://www.eurodisc.biz/media/image/6e/67/6a/eurodisc-logo-black.png" alt="Eurodisc" class="max-h-full max-w-full object-contain">
+                        <img src="https://www.eurodisc.biz/media/image/6e/67/6a/eurodisc-logo-black.png" alt="Bientôt vous" class="max-h-full max-w-full object-contain">
                     </div>
                     <!-- Partner 4: Lookfly -->
                     <div class="flex-shrink-0 w-72 h-44 bg-brand-light rounded-[32px] flex items-center justify-center p-10 snap-center border border-slate-100 grayscale hover:grayscale-0 hover:border-brand-pink/30 transition-all">
-                        <img src="https://lookfly.com/wp-content/uploads/2018/01/Lookfly-Logo-Black-Horizontal.png" alt="Lookfly" class="max-h-full max-w-full object-contain">
+                        <img src="https://lookfly.com/wp-content/uploads/2018/01/Lookfly-Logo-Black-Horizontal.png" alt="Bientôt vous" class="max-h-full max-w-full object-contain">
                     </div>
                     <!-- Partner 5: Pays de la Loire -->
                     <div class="flex-shrink-0 w-72 h-44 bg-brand-light rounded-[32px] flex items-center justify-center p-10 snap-center border border-slate-100 grayscale hover:grayscale-0 hover:border-brand-pink/30 transition-all">
-                        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/c/c5/Logo_Pays_de_la_Loire_2018.svg/1200px-Logo_Pays_de_la_Loire_2018.svg.png" alt="Région Pays de la Loire" class="max-h-full max-w-full object-contain">
+                        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/c/c5/Logo_Pays_de_la_Loire_2018.svg/1200px-Logo_Pays_de_la_Loire_2018.svg.png" alt="Bientôt vous" class="max-h-full max-w-full object-contain">
                     </div>
                 </div>
             </div>
@@ -469,7 +470,7 @@
             <div class="max-w-7xl mx-auto px-6">
                 <div class="flex flex-col md:flex-row items-end justify-between gap-8 mb-16">
                     <div class="max-w-2xl">
-                        <h2 class="text-5xl font-black tracking-tighter text-brand-navy mb-4">Soutenez-nous</h2>
+                        <h2 class="text-5xl font-open font-black tracking-tighter text-brand-navy mb-4">Soutenez-nous</h2>
                         <p class="text-lg text-brand-navy/70 font-medium">Contribuez au développement du club et portez fièrement nos couleurs.</p>
                     </div>
                 </div>
@@ -633,7 +634,7 @@
                 <i class="fas fa-times"></i>
             </button>
             
-            <h2 class="text-4xl font-black text-brand-navy mb-12 tracking-tighter uppercase">Mentions Légales</h2>
+            <h2 class="text-4xl font-open font-black text-brand-navy mb-12 tracking-tighter uppercase">Mentions Légales</h2>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-brand-navy/70">
                 <div class="space-y-8">
