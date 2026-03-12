@@ -6,13 +6,14 @@
     <title>Tchac Ultimate | Club d'Ultimate Frisbee Pornichet</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
                         sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        bebas: ['Bebas Neue', 'cursive'],
                     },
                     colors: {
                         brand: {
@@ -72,13 +73,23 @@
         }
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        h1, h2, h3, h4, .font-black, .font-bebas {
+            font-family: 'Bebas Neue', cursive;
+            letter-spacing: 0.02em;
+        }
+        
+        /* Ensure normal text stays Jakarta */
+        p, span:not(.font-black), li, a:not(.font-black) {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
     </style>
 </head>
 <body class="bg-white text-brand-navy font-sans selection:bg-brand-pink selection:text-brand-navy">
 
     <!-- HEADER -->
-    <header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 glass border-b border-brand-navy/10">
-        <nav class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 glass border-b border-brand-navy/10 h-20">
+        <nav class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
             <!-- Logo -->
             <a href="#accueil" class="flex items-center gap-3 group" aria-label="Retour à l'accueil">
                 <img src="asset/LogoTchac.png" alt="Tchac Logo" class="h-12 w-auto group-hover:animate-wave" referrerPolicy="no-referrer">
@@ -141,7 +152,7 @@
                     <!-- Club Logo in Hero -->
                     <div class="mb-12 inline-flex flex-col items-center">
                         <span class="text-brand-pink text-2xl md:text-3xl font-bold tracking-[0.5em] uppercase mb-2">Forty-Four</span>
-                        <h1 class="text-8xl md:text-[12rem] font-black text-white leading-none tracking-tighter mb-4">TCHAC</h1>
+                        <h1 class="text-8xl md:text-[12rem] font-black text-white leading-none tracking-tighter mb-4">T C H A C</h1>
                         <span class="text-brand-pink text-3xl md:text-4xl font-bold tracking-[0.8em] uppercase">ULTIMATE</span>
                         <div class="mt-8 flex gap-2">
                             <div class="w-12 h-1.5 bg-white rounded-full"></div>
@@ -178,9 +189,6 @@
         <section id="ultimate" class="py-32 bg-white relative overflow-hidden">
             <div class="max-w-7xl mx-auto px-6">
                 <div class="max-w-4xl mx-auto text-center">
-                    <div class="inline-block px-4 py-1 bg-brand-pink/20 text-brand-navy rounded-full text-xs font-black uppercase tracking-widest mb-6">
-                        Initiation
-                    </div>
                     <h2 class="text-5xl md:text-6xl font-black mb-8 tracking-tighter">L'Ultimate, c'est quoi ?</h2>
                     <p class="text-xl text-slate-600 leading-relaxed mb-16">
                         L’ultimate sport, également nommé Flying Disc est un sport collectif opposant 2 équipes de 5 ou 7 joueurs, qui se joue avec un disque volant (frisbee).<br><br>
@@ -199,15 +207,15 @@
                             <div class="w-16 h-16 bg-brand-navy text-white rounded-2xl flex items-center justify-center mb-6">
                                 <i class="fas fa-ban text-2xl"></i>
                             </div>
-                            <h4 class="font-black text-xl mb-3">Zéro Contact</h4>
+                            <h4 class="font-black text-xl mb-3">Sans Contact</h4>
                             <p class="text-slate-600">Tout contact physique est interdit. C'est un sport de placement, d'agilité et de lecture de trajectoire.</p>
                         </div>
                         <div class="p-8 bg-brand-light rounded-[32px] border border-brand-pink/20 flex flex-col items-center text-center">
                             <div class="w-16 h-16 bg-brand-navy text-white rounded-2xl flex items-center justify-center mb-6">
-                                <i class="fas fa-walking text-2xl"></i>
+                                <i class="fas fa-venus-mars text-2xl"></i>
                             </div>
-                            <h4 class="font-black text-xl mb-3">Pas de marche</h4>
-                            <p class="text-slate-600">Le porteur du disque ne peut pas courir. Il doit établir un pied de pivot pour lancer le disque.</p>
+                            <h4 class="font-black text-xl mb-3">Mixte</h4>
+                            <p class="text-slate-600">L'Ultimate est un sport pionnier de la mixité. Hommes et femmes jouent ensemble sur le même terrain, favorisant l'inclusion et le respect mutuel.</p>
                         </div>
                     </div>
                 </div>
@@ -233,10 +241,10 @@
                         <img src="asset/EUCF.jpg" alt="Tchac EUCF" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer">
                     </div>
                     <div class="overflow-hidden rounded-[32px] shadow-lg group">
-                        <img src="https://picsum.photos/seed/ultimate-frisbee-1/800/600" alt="Ultimate Action" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer">
+                        <img src="asset/NEMO1.jpg" alt="Ultimate Action" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer">
                     </div>
                     <div class="overflow-hidden rounded-[32px] shadow-lg group">
-                        <img src="https://picsum.photos/seed/ultimate-frisbee-2/800/600" alt="Ultimate Team" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer">
+                        <img src="asset/TCHAC4.jpg" alt="Ultimate Team" class="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-700" referrerPolicy="no-referrer">
                     </div>
                 </div>
             </div>
@@ -328,6 +336,16 @@
                         <p class="text-white/50 text-sm">Open Outdoor</p>
                     </div>
                 </div>
+
+                <div class="mt-16 text-center bg-white/5 p-8 rounded-[40px] border border-white/10">
+                    <p class="text-xl text-white/80 mb-6 font-medium">
+                        Vous souhaitez nous aider à atteindre nos objectifs et soutenir le club ?
+                    </p>
+                    <a href="https://www.helloasso.com/associations/tchac-cote-dl-eau/formulaires/5" target="_blank" class="inline-flex items-center gap-3 bg-brand-pink text-brand-navy px-10 py-5 rounded-full font-black uppercase tracking-widest hover:scale-105 transition-all shadow-xl">
+                        <i class="fas fa-heart text-xl"></i>
+                        Faire un don pour nous soutenir
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -397,6 +415,16 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="mt-16 text-center">
+                    <p class="text-xl text-slate-600 mb-6 font-medium">
+                        Prêt à nous rejoindre ? <span class="text-brand-pink">Les essais sont possibles pour tous</span>, quel que soit votre niveau !
+                    </p>
+                    <a href="https://spond.com/invite/QLYUS" target="_blank" class="inline-flex items-center gap-3 bg-brand-navy text-white px-10 py-5 rounded-full font-black uppercase tracking-widest hover:bg-brand-pink hover:text-brand-navy transition-all shadow-xl group">
+                        <i class="fas fa-calendar-check text-2xl group-hover:scale-110 transition-transform"></i>
+                        S'inscrire aux entraînements (Spond)
+                    </a>
                 </div>
             </div>
         </section>
@@ -480,6 +508,20 @@
                             <i class="fas fa-running text-[200px] -rotate-12"></i>
                         </div>
                     </a>
+
+                    <!-- Dossier Sponsoring -->
+                    <div class="group relative bg-white p-10 rounded-[40px] border-2 border-transparent hover:border-brand-pink transition-all duration-500 overflow-hidden shadow-xl shadow-brand-navy/5 md:col-span-2">
+                        <div class="relative z-10">
+                            <div class="w-16 h-16 bg-brand-pink/20 rounded-2xl flex items-center justify-center text-brand-pink mb-8 group-hover:scale-110 transition-transform">
+                                <i class="fas fa-file-pdf text-2xl"></i>
+                            </div>
+                            <h3 class="text-3xl font-black text-brand-navy mb-4">Dossier Sponsoring</h3>
+                            <p class="text-brand-navy/60 mb-8">Consultez notre dossier de partenariat pour découvrir comment nous soutenir.</p>
+                            <div class="rounded-2xl overflow-hidden border border-brand-navy/10 h-[500px] bg-white">
+                                <iframe src="https://drive.google.com/file/d/1WnPnsUoSFIOQH5fJJu02UHrdfIb83TEB/preview" width="100%" height="100%" allow="autoplay"></iframe>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -504,11 +546,11 @@
                 <div>
                     <h4 class="text-3xl font-black mb-10 text-brand-pink">Contactez-nous</h4>
                     <div class="space-y-8">
-                        <a href="mailto:webmaster@tchac-ultimate.net" class="flex items-center gap-6 group">
+                        <a href="mailto:tchac@ff-flyingdisc.fr" class="flex items-center gap-6 group">
                             <div class="w-14 h-14 bg-white/10 rounded-2xl flex items-center justify-center text-brand-pink group-hover:bg-brand-pink group-hover:text-brand-navy transition-all">
                                 <i class="fas fa-envelope text-xl"></i>
                             </div>
-                            <span class="text-xl font-bold">webmaster@tchac-ultimate.net</span>
+                            <span class="text-xl font-bold">tchac@ff-flyingdisc.fr</span>
                         </a>
                         <div class="flex gap-6 pt-4">
                             <a href="https://www.facebook.com/Tchac44/" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-brand-pink hover:text-brand-navy transition-all">
@@ -516,6 +558,12 @@
                             </a>
                             <a href="https://www.instagram.com/tchac44/" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-brand-pink hover:text-brand-navy transition-all">
                                 <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://www.youtube.com/@Tchac44" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-brand-pink hover:text-brand-navy transition-all">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/company/tchac-ultimate" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-white hover:bg-brand-pink hover:text-brand-navy transition-all">
+                                <i class="fab fa-linkedin-in"></i>
                             </a>
                         </div>
                     </div>
