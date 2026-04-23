@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WUCC 2026 | Tchac Ultimate</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Bebas+Neue&family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                        bebas: ['Bebas Neue', 'cursive'],
+                        open: ['Open Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            navy: '#00158a',
+                            pink: '#f9b6d8',
+                            light: '#fdf2f8',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                        'slide-up': 'slideUp 0.6s ease-out forwards',
+                        'wave': 'wave 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        wave: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-5px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        
+        h1, h2, h3, h4, .font-black, .font-bebas {
+            font-family: 'Bebas Neue', cursive;
+            letter-spacing: 0.02em;
+        }
+        
+        p, span:not(.font-black), li, a:not(.font-black) {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-white text-brand-navy font-sans selection:bg-brand-pink selection:text-brand-navy">
+
+    <!-- HEADER -->
+    <header id="header" class="fixed top-0 left-0 w-full z-50 glass border-b border-brand-navy/10 h-20 transition-all duration-300">
+        <nav class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+            <a href="/" class="flex items-center gap-3 group">
+                <img src="/asset/LogoTchac.png" alt="Tchac Logo" class="h-12 w-auto group-hover:animate-wave" referrerPolicy="no-referrer">
+                <div class="flex flex-col leading-none">
+                    <span class="text-xs font-bold tracking-[0.3em] text-brand-pink uppercase">Forty-Four</span>
+                    <span class="text-xl font-black tracking-tighter text-brand-navy">TCHAC</span>
+                </div>
+            </a>
+            <a href="/" class="px-6 py-2 bg-brand-navy text-white rounded-full font-black uppercase tracking-widest text-sm hover:bg-brand-pink hover:text-brand-navy transition-all">
+                Retour au site
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- 1) BANNIÈRE HERO (Adapted from main site) -->
+        <section id="accueil" class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-brand-navy">
+            <div class="absolute inset-0 z-0">
+                <img src="/asset/EUCF.jpg" alt="Tchac Ultimate en action" class="w-full h-full object-cover opacity-40 grayscale" referrerPolicy="no-referrer">
+                <div class="absolute inset-0 bg-gradient-to-b from-brand-navy/20 via-brand-navy/60 to-brand-navy"></div>
+            </div>
+            
+            <div class="relative z-10 max-w-7xl mx-auto px-6 w-full flex flex-col items-center text-center">
+                <div class="animate-slide-up">
+                    <div class="mb-12 inline-flex flex-col items-center">
+                        <span class="text-brand-pink text-2xl md:text-3xl font-bold tracking-[0.5em] uppercase mb-2">Road To Limerick</span>
+                        <h1 class="text-8xl md:text-[12rem] font-black text-white leading-none tracking-tighter mb-4">W U C C</h1>
+                        <span class="text-brand-pink text-3xl md:text-4xl font-bold tracking-[0.8em] uppercase text-center">2 0 2 6</span>
+                        <div class="mt-8 flex gap-2">
+                            <div class="w-12 h-1.5 bg-white rounded-full"></div>
+                            <div class="w-12 h-1.5 bg-brand-pink rounded-full"></div>
+                            <div class="w-12 h-1.5 bg-white rounded-full"></div>
+                        </div>
+                    </div>
+                    
+                    <p class="text-xl md:text-2xl text-white/80 mb-10 max-w-2xl mx-auto font-medium leading-relaxed">
+                        Espace membre réservé aux championnats du monde des clubs.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Wave Decoration -->
+            <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+                <svg viewBox="0 0 1200 120" preserveAspectRatio="none" class="relative block w-full h-24 fill-white">
+                    <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C58.47,113.1,121.36,119.32,182.36,108.07,243.36,96.82,283.36,70.82,321.39,56.44Z"></path>
+                </svg>
+            </div>
+        </section>
+
+        <!-- SECTION: LES DEUX MODULES -->
+        <section class="py-24 bg-white">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Galerie Photo -->
+                    <a href="#" target="_blank" class="group bg-brand-light p-10 rounded-[40px] border-2 border-transparent hover:border-brand-pink transition-all duration-500 shadow-xl shadow-brand-navy/5 text-left">
+                        <div class="w-16 h-16 bg-brand-pink/20 rounded-2xl flex items-center justify-center text-brand-pink mb-8 group-hover:scale-110 transition-transform">
+                            <i class="fas fa-camera text-2xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-black text-brand-navy mb-4">Galerie Photos</h3>
+                        <p class="text-brand-navy/60 mb-8 font-medium">Découvrez les clichés exclusifs de l'équipe.</p>
+                        <span class="inline-flex items-center gap-2 font-black text-brand-navy group-hover:gap-4 transition-all">
+                            Accéder à l'album <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </a>
+
+                    <!-- SoundCloud -->
+                    <a href="#" target="_blank" class="group bg-brand-navy p-10 rounded-[40px] border-2 border-transparent hover:border-brand-pink transition-all duration-500 shadow-xl shadow-brand-navy/20 text-left">
+                        <div class="w-16 h-16 bg-white/10 rounded-2xl flex items-center justify-center text-brand-pink mb-8 group-hover:scale-110 transition-transform">
+                            <i class="fab fa-soundcloud text-2xl"></i>
+                        </div>
+                        <h3 class="text-3xl font-black text-white mb-4">SoundCloud Team</h3>
+                        <p class="text-white/60 mb-8 font-medium">Contenus audio et playlists privées pour rester focus.</p>
+                        <span class="inline-flex items-center gap-2 font-black text-brand-pink group-hover:gap-4 transition-all">
+                            Écouter maintenant <i class="fas fa-arrow-right"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER SIMPLE -->
+    <footer class="bg-slate-50 py-12 border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-brand-navy/60 text-sm italic">© 2024 Tchac Ultimate. Design inspiré par l'Esprit du Jeu.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
